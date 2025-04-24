@@ -1,0 +1,87 @@
+
+.slick-next.slick-disabled:before, .slick-prev.slick-disabled:before {
+ opacity: 0.5 !important;
+}
+
+.slick-next {
+  &.slick-top-next-btn {
+    top: -40px;
+    right: 0;
+  }
+  &:before {
+   opacity: 0 !important;
+  } 
+  @media (max-width:"992px"){
+    right: 5px !important;
+  }
+  
+}
+
+.slick-prev {
+  position: absolute;
+  z-index: 2;
+  &.slick-top-prev-btn {
+    top: -40px;
+    left: calc(100% - 105px);
+    @media (max-width: 992px){
+      left: calc(100% - 105px) !important ;
+    }
+    
+  }
+  &:before {
+    opacity: 0 !important;
+  }
+  @media (max-width:"992px"){
+    left: 5px !important;
+  }
+
+}
+
+
+// dots customization 
+.slick-dots {
+  bottom: 0 !important;
+ 
+}
+.slick-dots li button:before {
+  font-size: 16px !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #0f3460 !important;
+  opacity: 1 !important;
+}
+.slick-dots  li:hover button:before {
+  color: #0f3460 !important;
+  opacity: 1 !important;
+}
+
+// end dot customization 
+.slick-header-top-title {
+  @media (max-width: 375px) {
+    width: 200px;
+  }
+}
+
+.slick-left-arrow {
+  position: absolute;
+  left: 0 !important;
+}
+.slick-right-arrow {
+  position: absolute;
+  right: 0 !important;
+}
+
+
+// slick-button-hover 
+
+.slick-button-hover {
+  &:hover {
+    .slick-arrow {
+      display: block;
+    }
+  }
+  .slick-arrow {
+    display: none;
+  }
+}

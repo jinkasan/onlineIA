@@ -1,0 +1,14 @@
+.input-group-btn {
+    display: flex;
+    align-items: center;
+    .v-input__slot {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+    }
+    button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        height: 42px !important;
+    }
+}
