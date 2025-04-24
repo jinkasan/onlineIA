@@ -1,0 +1,9 @@
+# Include configuration commune
+include:
+  - project: "jinkasan/infra"
+    ref: main
+    file: "ci/global-config.yml"
+
+variables:
+  VPS_REP: /home/ci/infra/docker-compose/front/landing
+  SERVICE_NAME: jinkasan-landing
