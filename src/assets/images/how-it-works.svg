@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E94E1B;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:0.1"/>
+    </linearGradient>
+    
+    <!-- Animation des personnes -->
+    <g id="person">
+      <circle r="15" fill="#E94E1B"/>
+      <path d="M-5 15 Q0 25 5 15" stroke="#E94E1B" fill="none" stroke-width="2"/>
+    </g>
+  </defs>
+  
+  <!-- Fond -->
+  <rect width="800" height="400" fill="url(#bgGradient)" rx="20"/>
+  
+  <!-- Étape 1: Les personnes se regroupent -->
+  <g transform="translate(100, 200)">
+    <use href="#person">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="-50,0" to="0,0"
+        dur="3s" repeatCount="indefinite"
+      />
+    </use>
+    <use href="#person">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="50,50" to="0,0"
+        dur="3s" repeatCount="indefinite"
+      />
+    </use>
+    <use href="#person">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        from="-20,-50" to="0,0"
+        dur="3s" repeatCount="indefinite"
+      />
+    </use>
+    <text x="0" y="50" text-anchor="middle" fill="#333" font-size="14">1. Regroupement</text>
+  </g>
+  
+  <!-- Étape 2: Négociation -->
+  <g transform="translate(400, 200)">
+    <rect x="-40" y="-30" width="80" height="60" fill="#FFD700" rx="10" opacity="0.8">
+      <animate
+        attributeName="opacity"
+        values="0.8;1;0.8"
+        dur="2s"
+        repeatCount="indefinite"
+      />
+    </rect>
+    <text x="0" y="0" text-anchor="middle" fill="#333" font-size="20">%</text>
+    <text x="0" y="50" text-anchor="middle" fill="#333" font-size="14">2. Négociation</text>
+  </g>
+  
+  <!-- Étape 3: Livraison -->
+  <g transform="translate(700, 200)">
+    <rect x="-30" y="-20" width="60" height="40" fill="#4CAF50" rx="5"/>
+    <path d="M-40 0 L40 0" stroke="#333" stroke-width="2">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="-20;20;-20"
+        dur="3s"
+        repeatCount="indefinite"
+      />
+    </path>
+    <text x="0" y="50" text-anchor="middle" fill="#333" font-size="14">3. Livraison</text>
+  </g>
+  
+  <!-- Flèches de connexion -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <path d="M200 200 L300 200">
+      <animate
+        attributeName="stroke-dasharray"
+        values="0,100;100,0"
+        dur="3s"
+        repeatCount="indefinite"
+      />
+    </path>
+    <path d="M500 200 L600 200">
+      <animate
+        attributeName="stroke-dasharray"
+        values="0,100;100,0"
+        dur="3s"
+        repeatCount="indefinite"
+      />
+    </path>
+  </g>
+  
+  <!-- Titre -->
+  <text x="400" y="80" text-anchor="middle" font-size="24" font-weight="bold" fill="#333">
+    Comment fonctionne Jinkasan ?
+  </text>
+</svg>
