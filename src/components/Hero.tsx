@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
 import { ChevronDoubleDownIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect, useRef } from "react";
+import BetaBadge from "./BetaBadge";
 
 export default function Hero() {
   // État fixe pour la démo
   const totalPlaces = 500;
   const placesDisponibles = 50;
-  const progression = ((totalPlaces - placesDisponibles) / totalPlaces) * 100;
   const inscrits = totalPlaces - placesDisponibles;
-  const pourcentage = Math.round(progression);
   
   // Référence pour le carrousel de cartes sur mobile
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -84,27 +83,53 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero relative min-h-screen overflow-hidden bg-[#F5F5F5]" style={{ fontFamily: 'Verdana, sans-serif' }}>
-      {/* Ruban en haut avec l'horloge - simplifié */}
-      <div className="sticky top-0 left-0 right-0 z-50 bg-[#DD442E] text-white py-2 shadow-md">
+    <section className="hero relative min-h-screen overflow-hidden bg-gradient-to-b from-[#181818] to-[#333] flex flex-col" style={{ fontFamily: 'Verdana, sans-serif' }}>
+      {/* Badge Beta visible uniquement dans la section Hero */}
+      <BetaBadge />
+      
+
+      
+      {/* Ruban en haut avec l'horloge - version plus moderne */}
+      <div className="sticky top-0 left-0 right-0 z-50 bg-[#DD442E] text-white py-2 shadow-md backdrop-blur-sm bg-opacity-95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between">
-          <div className="text-xs sm:text-sm md:text-base hidden sm:block">
-            Nous réunissons les acheteurs pour obtenir les meilleurs prix
+          <div className="text-xs sm:text-sm md:text-base hidden sm:flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>Nous réunissons les acheteurs pour obtenir les meilleurs prix</span>
           </div>
-          <div className="flex items-center gap-2 text-xs sm:text-sm shrink-0 bg-black/10 px-2 sm:px-4 py-1 rounded-lg border border-white/20 mx-auto sm:mx-0">
+          <div className="flex items-center gap-2 text-xs sm:text-sm shrink-0 bg-black/20 px-3 sm:px-4 py-2 rounded-xl border border-white/30 mx-auto sm:mx-0 shadow-inner">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             <span className="whitespace-nowrap font-medium">Expire dans</span>
             <div className="flex items-center font-bold tracking-wider">
-              <span>{timeLeft.days}</span>
-              <span className="opacity-60 mx-1">j</span>
-              <span>{timeLeft.hours}</span>
-              <span className="opacity-60 mx-1">h</span>
-              <span>{timeLeft.minutes}</span>
-              <span className="opacity-60 mx-1">m</span>
-              <span>{timeLeft.seconds}</span>
-              <span className="opacity-60 ml-1">s</span>
+              <div className="bg-white/10 rounded-md px-2 py-1 mx-0.5">{timeLeft.days}</div>
+              <span className="opacity-80 mx-1">j</span>
+              <div className="bg-white/10 rounded-md px-2 py-1 mx-0.5">{timeLeft.hours}</div>
+              <span className="opacity-80 mx-1">h</span>
+              <div className="bg-white/10 rounded-md px-2 py-1 mx-0.5">{timeLeft.minutes}</div>
+              <span className="opacity-80 mx-1">m</span>
+              <div className="bg-white/10 rounded-md px-2 py-1 mx-0.5">{timeLeft.seconds}</div>
+              <span className="opacity-80 ml-1">s</span>
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Logo Jinkasan en dessous du header et aligné à droite en mode laptop */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 flex justify-center lg:justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <img 
+            src="/logo.png" 
+            alt="Logo Jinkasan" 
+            className="w-[220px] sm:w-[250px] lg:w-[280px] h-auto filter drop-shadow-xl"
+          />
+        </motion.div>
       </div>
       
       {/* Background avec overlay */}
@@ -114,41 +139,29 @@ export default function Hero() {
           style={{
             backgroundImage: 'url("/images/hero-bg.png")',
             backgroundSize: 'cover',
-            backgroundPosition: 'center 30%',
+            backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
           }}
         />
         {/* Overlay pour contraste - optimisé pour accessibilité */}
         <div className="absolute inset-0 bg-black/45" />
       </div>
-
-      {/* Contenu principal - restructuré en layout split 60/40 */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 md:pb-20">
-        <div className="flex flex-col md:flex-row md:items-center md:space-x-8 lg:space-x-16">
+      {/* Contenu principal - restructuré en layout split 50/50 plus centré */}
+      <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-16 pb-16 md:pb-20 flex-grow flex items-center justify-center">
+        <div className="flex flex-col md:flex-row md:items-center justify-center w-full max-w-7xl mx-auto gap-8 lg:gap-16">
           {/* Colonne gauche: Logo, titre et CTA */}
-          <div className="w-full md:w-3/5 mb-10 md:mb-0 flex flex-col items-center md:items-start">
-            {/* Logo et badge */}
-            <div className="flex justify-center md:justify-start items-start mb-8 w-full">
-              <motion.img 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4 }}
-                src="/logo.png" 
-                alt="Logo Jinkasan" 
-                className="w-[200px] sm:w-[280px] h-auto"
-              />
-              
-              {/* Badge supprimé conformément aux exigences */}
-            </div>
-            
+          <div className="w-full md:w-1/2 mb-10 md:mb-0 flex flex-col items-center md:items-center lg:items-start mx-auto md:mx-0 max-w-xl">
+
             {/* Titre principal réduit et divisé en deux lignes */}
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-center md:text-left"
+              className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-6 text-center lg:text-left"
             >
-              NOUS CHERCHONS 500 TESTEURS<br />Rejoignez-nous !
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">NOUS CHERCHONS</span><br/>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FACE31] to-[#FDB31A]">500 TESTEURS</span><br/>
+              <span className="text-white/90 font-bold">Rejoignez-nous !</span>
             </motion.h1>
             
             {/* Sous-titre concis */}
@@ -156,23 +169,32 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-white/90 mb-8 max-w-xl text-center md:text-left mx-auto md:mx-0"
+              className="text-xl text-white/90 mb-8 max-w-xl text-center lg:text-left mx-auto lg:mx-0 leading-relaxed"
             >
-              Testez en avant-première notre plateforme d'achat groupé et recevez jusqu'à 5000 FCFA de bons d'achat.
+              Testez en avant-première notre plateforme d'achat groupé et recevez <span className="font-bold text-[#FACE31] px-1 py-0.5 rounded">jusqu'à 5000 FCFA</span> de bons d'achat.
             </motion.h2>
             
             {/* CTA principal remonté en haut */}
             <motion.button 
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-[#DD442E] text-white border-none rounded-lg py-4 px-8 text-lg font-bold focus:outline-[#FACE31] focus:outline-2 shadow-lg relative overflow-hidden cursor-pointer max-w-xs w-full md:w-auto mx-auto md:mx-0"
+              className="bg-gradient-to-r from-[#DD442E] to-[#E65142] text-white border-none rounded-xl py-4 px-10 text-lg font-bold focus:outline-[#FACE31] focus:outline-2 shadow-xl relative overflow-hidden cursor-pointer max-w-xs w-full md:w-auto mx-auto lg:mx-0 flex items-center justify-center gap-2"
               variants={buttonHoverVariants}
               initial="initial"
               whileHover="hover"
               whileTap={{ scale: 0.98 }}
               onClick={scrollToSignup}
             >
-              Je deviens testeur →
+              <span>Je deviens testeur</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              <motion.div
+                className="absolute inset-0 bg-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.1, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              />
             </motion.button>
             
             {/* Flèche scroll */}
@@ -185,11 +207,11 @@ export default function Hero() {
           </div>
           
           {/* Colonne droite: Cartes et progression */}
-          <div className="w-full md:w-2/5 flex flex-col items-center md:items-start">
+          <div className="w-full md:w-1/2 flex flex-col items-center mx-auto md:mx-0 max-w-xl">
             {/* Container de cartes avec scroll-snap sur mobile */}
             <div 
               ref={carouselRef}
-              className="gift-cards relative overflow-x-auto sm:overflow-visible pb-4 -mx-4 px-4 sm:mx-0 sm:px-0"
+              className="gift-cards relative overflow-x-auto sm:overflow-visible pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 w-full"
               style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
             >
               {/* Background glow effect */}
@@ -198,121 +220,128 @@ export default function Hero() {
                 transition={{ duration: 4, repeat: Infinity }}
               />
           
-              <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:w-full sm:mb-4 mx-auto md:mx-0 max-w-lg">
+              <div className="flex flex-col sm:grid sm:grid-cols-2 gap-4 sm:w-full sm:mb-4 mx-auto max-w-xs sm:max-w-lg xl:max-w-xl w-full">
+                {/* Matching button width on mobile */}
                 {/* Carte 5000 FCFA - COMPLET */}
                 <motion.article 
-                  className="card-complete bg-[#DD442E] w-[260px] mx-auto sm:w-full p-5 rounded-xl relative overflow-hidden shadow-xl flex-shrink-0"
+                  className="card-complete bg-gradient-to-br from-[#DD442E] to-[#B53A27] w-full mx-auto p-4 rounded-2xl relative overflow-hidden shadow-2xl flex-shrink-0 border border-[#FF6B59]/30"
                   style={{ scrollSnapAlign: 'start' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="ribbon absolute -right-8 top-5 w-32 rotate-45 bg-[#4B9C5B] text-center py-1 text-sm font-bold text-white shadow-md">
+                  <div className="ribbon absolute -right-12 top-8 w-44 rotate-45 bg-white text-center py-1.5 text-sm font-bold text-[#1A1A1A] shadow-md">
                     COMPLET
                   </div>
-                  <span className="amount block text-4xl font-bold text-white mb-1 text-center">5000 FCFA</span>
-                  <small className="block text-white mb-4 text-center">de bon d'achat</small>
-                  <footer className="text-white text-sm font-medium mt-2 bg-black/30 py-1 px-3 rounded text-center">
-                    Pour les <strong>100 premiers</strong>
-                  </footer>
+                  <motion.div 
+                    className="absolute inset-0 bg-white/5"
+                    animate={{ opacity: [0, 0.2, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                  <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="amount block text-5xl font-bold text-white text-center drop-shadow-md leading-tight">5000</span>
+                      <span className="amount block text-2xl font-bold text-white text-center drop-shadow-md">FCFA</span>
+                    </div>
+                    <small className="block text-white/90 mb-4 text-center">de bon d'achat</small>
+                    <div className="w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent my-2"></div>
+                    <footer className="text-white text-sm font-medium mt-3 bg-black/20 py-2 px-4 rounded-full text-center w-full">
+                      Pour les <strong>100 premiers</strong>
+                    </footer>
+                  </div>
                 </motion.article>
           
                 {/* Carte 3000 FCFA - COMPLET */}
                 <motion.article 
-                  className="card-complete bg-[#DD442E] w-[260px] mx-auto sm:w-full p-5 rounded-xl relative overflow-hidden shadow-xl flex-shrink-0"
+                  className="card-complete bg-gradient-to-br from-[#DD442E] to-[#B53A27] w-full mx-auto p-4 rounded-2xl relative overflow-hidden shadow-2xl flex-shrink-0 mt-4 sm:mt-0 border border-[#FF6B59]/30"
                   style={{ scrollSnapAlign: 'start' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="ribbon absolute -right-8 top-5 w-32 rotate-45 bg-[#4B9C5B] text-center py-1 text-sm font-bold text-white shadow-md">
+                  <div className="ribbon absolute -right-12 top-8 w-44 rotate-45 bg-white text-center py-1.5 text-sm font-bold text-[#1A1A1A] shadow-md">
                     COMPLET
                   </div>
-                  <span className="amount block text-4xl font-bold text-white mb-1 text-center">3000 FCFA</span>
-                  <small className="block text-white mb-4 text-center">de bon d'achat</small>
-                  <footer className="text-white text-sm font-medium mt-2 bg-black/30 py-1 px-3 rounded text-center">
-                    Pour les <strong>200 suivants</strong>
-                  </footer>
+                  <motion.div 
+                    className="absolute inset-0 bg-white/5"
+                    animate={{ opacity: [0, 0.2, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                  />
+                  <div className="flex flex-col items-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="amount block text-5xl font-bold text-white text-center drop-shadow-md leading-tight">3000</span>
+                      <span className="amount block text-2xl font-bold text-white text-center drop-shadow-md">FCFA</span>
+                    </div>
+                    <small className="block text-white/90 mb-4 text-center">de bon d'achat</small>
+                    <div className="w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent my-2"></div>
+                    <footer className="text-white text-sm font-medium mt-3 bg-black/20 py-2 px-4 rounded-full text-center w-full">
+                      Pour les <strong>200 suivants</strong>
+                    </footer>
+                  </div>
                 </motion.article>
-              </div>
-          
-              {/* Carte 2000 FCFA - RESTANTS */}
-              <motion.article 
-                className="card-remaining bg-[#DD442E] w-[260px] mx-auto sm:w-full p-5 rounded-xl relative overflow-hidden shadow-xl flex-shrink-0 mt-4 sm:mt-0"
-                style={{ scrollSnapAlign: 'start' }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="ribbon absolute -right-10 top-7 w-40 rotate-45 bg-[#FACE31] text-center py-1.5 text-sm font-bold text-[#1A1A1A] shadow-md">
-                  50 RESTANTS
+                
+                {/* Carte 2000 FCFA - RESTANTS */}
+                <motion.article 
+                  className="card-remaining bg-gradient-to-br from-[#DD442E] to-[#B53A27] w-full mx-auto p-4 rounded-2xl relative overflow-hidden shadow-2xl flex-shrink-0 mt-4 sm:mt-0 sm:col-span-2 border border-[#FF6B59]/30"
+                  style={{ scrollSnapAlign: 'start' }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                <div className="ribbon absolute -right-12 top-8 w-44 rotate-45 bg-[#FACE31] text-center py-2 text-sm font-bold text-[#1A1A1A] shadow-lg">
+                  <span className="flex items-center justify-center gap-1">
+                    <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    50 RESTANTS
+                  </span>
                 </div>
                 <motion.div 
                   className="absolute inset-0 bg-[#FACE31]/10"
                   animate={{ opacity: [0, 0.3, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <span className="amount block text-4xl font-bold text-white mb-1 text-center">2000 FCFA</span>
-                <small className="block text-white mb-4 text-center">de bon d'achat</small>
-                <footer className="text-white text-sm font-medium mt-2 bg-black/30 py-1 px-3 rounded text-center">
-                  Pour les <strong>200 derniers</strong>
-                </footer>
+                <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="amount block text-5xl font-bold text-white text-center drop-shadow-md leading-tight">2000</span>
+                    <span className="amount block text-2xl font-bold text-white text-center drop-shadow-md">FCFA</span>
+                  </div>
+                  <small className="block text-white/90 mb-4 text-center">de bon d'achat</small>
+                  <div className="w-1/2 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent my-2"></div>
+                  <footer className="text-white text-sm font-medium mt-3 bg-black/20 py-2 px-4 rounded-full text-center w-full">
+                    Pour les <strong>200 derniers</strong>
+                  </footer>
+                </div>
               </motion.article>
+              </div>
             </div>
           
-            {/* Barre de progression améliorée */}
+            {/* Barre de progression minimaliste */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="progress-wrapper mt-8 bg-black/30 p-4 rounded-lg shadow-lg border border-white/10 w-full max-w-lg mx-auto md:mx-0"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex items-center justify-center mt-8 mb-2"
             >
-              <div className="flex flex-col sm:flex-row justify-between items-center mb-2 gap-2 text-center sm:text-left">
-                <span className="progress-label text-white font-medium">
-                  <span className="text-white font-bold">{inscrits}/500</span> inscrits
-                </span>
-                <span className="text-[#FACE31] text-sm font-bold">🟢 {placesDisponibles} places restantes</span>
-              </div>
-              
-              <div 
-                className="progress-bar w-full h-3 bg-[#E5E5E5] rounded-full overflow-hidden" 
-                role="progressbar"
-                aria-valuenow={progression}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label={`Progression des inscriptions: ${pourcentage}%`}
-              >
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progression}%` }}
-                  transition={{ duration: 1.5, delay: 0.8 }}
-                  className="progress-fill h-full" 
-                  style={{ 
-                    background: 'linear-gradient(90deg, #4B9C5B 0%, #DD442E 100%)'
-                  }}
-                />
+              <div className="inline-flex items-center gap-3 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/10">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-white font-bold">{inscrits}/500</span>
+                  <span className="text-white/70 text-sm">inscrits</span>
+                </div>
+                
+                <div className="w-[2px] h-4 bg-white/20 mx-0.5"></div>
+                
+                <div className="flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                  <span className="text-[#FACE31] font-medium text-sm">{placesDisponibles} places restantes</span>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
           
-        {/* CTA sticky mobile seulement */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}  
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="fixed bottom-0 left-0 right-0 md:hidden bg-black/80 backdrop-blur-sm p-3 z-30"
-        >
-          <button 
-            className="w-full bg-[#DD442E] text-white font-bold py-3 px-4 rounded-lg shadow-lg text-lg cursor-pointer" 
-            onClick={scrollToSignup}
-          >
-            Je deviens testeur →
-          </button>
-        </motion.div>
+        {/* Le bouton CTA sticky mobile a été supprimé */}
       </div>
     </section>
   );

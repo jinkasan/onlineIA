@@ -13,8 +13,8 @@ export default function BetaHeader({ currentStep, totalSteps, testerCount }: Bet
         {/* Logo avec badge BÊTA */}
         <div className="flex items-center relative">
           <img src="/jinkasan.svg" alt="Jinkasan Logo" className="h-10 bg-white p-1 rounded" />
-          <div className="bg-[var(--rouge)] text-white text-xs font-bold px-2 py-1 rounded-lg absolute -top-2 -right-2 transform rotate-[-8deg] border border-white shadow-sm">
-            PHASE BÊTA
+          <div className="bg-[#2A4B35] text-white text-xs font-bold px-2 py-1 rounded-lg absolute -top-2 -right-2 transform rotate-[-8deg] border border-white shadow-sm">
+            Je deviens testeur
           </div>
         </div>
         
@@ -25,17 +25,17 @@ export default function BetaHeader({ currentStep, totalSteps, testerCount }: Bet
               <div 
                 className={`w-8 h-8 rounded-full flex items-center justify-center ${
                   index + 1 === currentStep
-                    ? 'bg-[var(--rouge)] text-white'
+                    ? 'bg-[#2A4B35] text-white'
                     : index + 1 < currentStep
-                    ? 'bg-[var(--vert)] text-white'
-                    : 'border-2 border-[var(--rouge)] bg-white text-[var(--grisF)]'
+                    ? 'bg-[#2A4B35] text-white'
+                    : 'border-2 border-[#2A4B35] bg-white text-[var(--grisF)]'
                 }`}
               >
                 {index + 1}
               </div>
               {index < totalSteps - 1 && (
                 <div 
-                  className={`w-8 h-1 ${index + 1 < currentStep ? 'bg-[var(--vert)]' : 'bg-gray-200'}`}
+                  className={`w-8 h-1 ${index + 1 < currentStep ? 'bg-[#2A4B35]' : 'bg-gray-200'}`}
                 />
               )}
             </div>
@@ -49,13 +49,11 @@ export default function BetaHeader({ currentStep, totalSteps, testerCount }: Bet
         >
           <span className="text-sm font-bold">{testerCount}/500 testeurs</span>
           
-          {/* Barre de progression */}
           <div className="ml-2 w-16 h-2 bg-[var(--grisC)] rounded-full overflow-hidden">
             <div 
-              className="h-full" 
+              className="h-full bg-[#2A4B35]" 
               style={{ 
-                width: `${(testerCount / 500) * 100}%`,
-                background: `linear-gradient(90deg, var(--vert) 0%, var(--rouge) 100%)`
+                width: `${(testerCount / 500) * 100}%`
               }}
             />
           </div>

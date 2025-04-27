@@ -40,8 +40,8 @@ export default function Step2Confirmation({ onContinue, onBack }: Step2Confirmat
     <div className="py-8">
       {/* Badge PHASE BÊTA */}
       <div className="flex justify-center mb-6">
-        <div className="bg-[var(--rouge)] text-white font-bold px-4 py-1.5 rounded-full transform rotate-[-2deg] shadow-sm">
-          PHASE BÊTA
+        <div className="bg-[#2A4B35] text-white font-bold px-4 py-1.5 rounded-full transform rotate-[-2deg] shadow-sm">
+          Je deviens testeur
         </div>
       </div>
       
@@ -105,7 +105,7 @@ export default function Step2Confirmation({ onContinue, onBack }: Step2Confirmat
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[var(--rouge)] hover:bg-[#E14A29] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-150 focus:outline-dotted focus:outline-2 focus:outline-white"
+          className="bg-[#2A4B35] hover:bg-[#355d42] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-150 focus:outline-dotted focus:outline-2 focus:outline-white"
           onClick={onContinue}
         >
           Je confirme mon rôle de testeur

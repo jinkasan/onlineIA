@@ -54,8 +54,8 @@ export default function SignUpForm() {
       {/* Beta Banner */}
       <div className="absolute top-0 left-0 right-0 bg-purple-700 text-white text-center py-2 px-4 font-medium text-sm">
         <div className="flex items-center justify-center">
-          <div className="bg-white text-purple-700 px-2 py-0.5 rounded font-bold mr-2">
-            PHASE BÊTA
+          <div className="bg-white text-[#2A4B35] px-2 py-0.5 rounded font-bold mr-2">
+            Je deviens testeur
           </div>
           <span>
             Nous recrutons actuellement 500 testeurs - Aucun paiement n'est requis à cette étape

@@ -35,7 +35,7 @@ const roles = [
 
 export default function BetaTimeline() {
   return (
-    <section className="py-20 bg-slate-50" id="beta-timeline">
+    <section className="py-20 bg-gradient-to-b from-[#512373]/5 to-[#512373]/10" id="beta-timeline">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

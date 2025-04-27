@@ -29,8 +29,8 @@ export default function Step3Form({
     <div className="py-8">
       {/* Badge PHASE BÊTA */}
       <div className="flex justify-center mb-6">
-        <div className="bg-[var(--rouge)] text-white font-bold px-4 py-1.5 rounded-full transform rotate-[-2deg] shadow-sm">
-          PHASE BÊTA
+        <div className="bg-[#2A4B35] text-white font-bold px-4 py-1.5 rounded-full transform rotate-[-2deg] shadow-sm">
+          Je deviens testeur
         </div>
       </div>
       
@@ -39,7 +39,7 @@ export default function Step3Form({
       </h2>
       
       <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
-        Ces informations nous permettront de vous contacter pour la phase de test
+        Un code de validation à 4 chiffres sera envoyé à votre adresse email pour confirmer votre inscription
       </p>
       
       {/* Formulaire */}
@@ -68,29 +68,10 @@ export default function Step3Form({
             />
           </div>
           
-          {/* Téléphone */}
-          <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-              Téléphone <span className="text-red-500">*</span> <span className="text-gray-500">(format: +226 XX XX XX XX)</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={onChange}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-[var(--violet)] focus:border-[var(--violet)]"
-              placeholder="+226"
-              required
-              pattern="^(\+226|226)?[0-9]{8}$"
-            />
-            <p className="mt-1 text-xs text-gray-500">Nous enverrons un code de vérification par SMS</p>
-          </div>
-          
-          {/* Email (optionnel) */}
+          {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email <span className="text-gray-500">(optionnel)</span>
+              Email <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
@@ -100,6 +81,25 @@ export default function Step3Form({
               onChange={onChange}
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-[var(--violet)] focus:border-[var(--violet)]"
               placeholder="votre.email@exemple.com"
+              required
+            />
+            <p className="mt-1 text-xs text-gray-500">Nous vous enverrons un code de validation à 4 chiffres</p>
+          </div>
+          
+          {/* Téléphone */}
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+              Téléphone <span className="text-gray-500">(facultatif, format: +226 XX XX XX XX)</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={onChange}
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-[var(--violet)] focus:border-[var(--violet)]"
+              placeholder="+226"
+              pattern="^(\+226|226)?[0-9]{8}$"
             />
           </div>
           
@@ -119,7 +119,7 @@ export default function Step3Form({
             type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-[var(--rouge)] hover:bg-[#E14A29] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-150 focus:outline-dotted focus:outline-2 focus:outline-white w-full sm:w-auto"
+            className="bg-[#2A4B35] hover:bg-[#355d42] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-150 focus:outline-dotted focus:outline-2 focus:outline-white w-full sm:w-auto"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

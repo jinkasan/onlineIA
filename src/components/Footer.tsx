@@ -55,7 +55,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1A1A1A]" aria-labelledby="footer-heading">
+    <footer className="bg-[#2A4B35] text-white" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -155,9 +155,6 @@ export default function Footer() {
         >
           <p className="text-center text-xs leading-5 text-white opacity-70" style={{ fontFamily: 'Verdana, sans-serif' }}>
             &copy; {new Date().getFullYear()} Jinkasan. Tous droits réservés.
-          </p>
-          <p className="text-center text-sm mt-4 font-medium text-[var(--rouge)] border border-[var(--rouge)]/20 rounded-lg py-2 bg-[var(--rouge)]/5" style={{ fontFamily: 'Verdana, sans-serif' }}>
-            Projet en cours de développement – Vos retours façonnent la plateforme
           </p>
         </motion.div>
       </div>

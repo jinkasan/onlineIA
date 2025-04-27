@@ -1,24 +1,25 @@
 import { motion } from 'framer-motion';
 
-type Step1DeplicProps = {
+interface Step1DeclicProps {
   onContinue: () => void;
   testerCount: number;
+  onSkipToSurvey?: () => void;
 };
 
-export default function Step1Declic({ onContinue, testerCount }: Step1DeplicProps) {
+export default function Step1Declic({ onContinue, testerCount, onSkipToSurvey }: Step1DeclicProps) {
   return (
     <div className="text-center py-8">
       {/* Badge PHASE BÊTA */}
-      <div className="inline-block bg-[var(--rouge)] text-white font-bold px-4 py-1.5 rounded-full mb-6 transform rotate-[-2deg] shadow-sm">
-        PHASE BÊTA
+      <div className="inline-block bg-[#2A4B35] text-white font-bold px-4 py-1.5 rounded-full mb-6 transform rotate-[-2deg] shadow-sm">
+        Je deviens testeur
       </div>
       
       <h1 className="text-3xl md:text-4xl font-bold text-[var(--grisF)] mb-4">
-        Souhaitez-vous devenir <span className="text-[var(--violet)]">testeur</span> Jinkasan ?
+        Souhaitez-vous devenir testeur Jinkasan ?
       </h1>
       
       <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-        Testez notre future plateforme d'achat groupé et gagnez jusqu'à 5 000 FCFA.
+        Testez notre future plateforme d'achat groupé et gagnez <span className="whitespace-nowrap">jusqu'à 5 000 FCFA</span>.
       </p>
       
       {/* Compteur avec animation */}
@@ -36,7 +37,7 @@ export default function Step1Declic({ onContinue, testerCount }: Step1DeplicProp
             <span className="text-sm text-gray-500">testeurs déjà inscrits</span>
             <div className="w-32 h-2 bg-gray-200 rounded-full mt-1 overflow-hidden">
               <motion.div 
-                className="h-full bg-[var(--rouge)]"
+                className="h-full bg-[#2A4B35]"
                 initial={{ width: 0 }}
                 animate={{ width: `${(testerCount / 500) * 100}%` }}
                 transition={{ duration: 1, delay: 0.3 }}
@@ -51,7 +52,7 @@ export default function Step1Declic({ onContinue, testerCount }: Step1DeplicProp
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[var(--rouge)] hover:bg-[#E14A29] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-150 focus:outline-dotted focus:outline-2 focus:outline-white"
+          className="bg-[#2A4B35] hover:bg-[#2A4B35] text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-150 focus:outline-dotted focus:outline-2 focus:outline-white"
           onClick={onContinue}
         >
           Oui, je deviens testeur
@@ -61,8 +62,9 @@ export default function Step1Declic({ onContinue, testerCount }: Step1DeplicProp
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="border-2 border-[var(--violet)] text-[var(--violet)] font-bold py-4 px-8 rounded-xl hover:bg-purple-50 transition-all duration-150"
+          onClick={onSkipToSurvey}
         >
-          Pas maintenant
+          Participer au sondage uniquement
         </motion.button>
       </div>
       
